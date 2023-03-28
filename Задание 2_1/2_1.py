@@ -1,6 +1,7 @@
 import urllib.request
 
 lst = list()
+word_count = {}
 
 with urllib.request.urlopen('http://dfedorov.spb.ru/python3/src/romeo.txt') as webpage:
         for i in webpage:
@@ -9,7 +10,6 @@ with urllib.request.urlopen('http://dfedorov.spb.ru/python3/src/romeo.txt') as w
             for word in i.split():
                 lst.append(word)
 
-word_count = {}
 for word in lst:
     if word in word_count:
         word_count[word] += 1
