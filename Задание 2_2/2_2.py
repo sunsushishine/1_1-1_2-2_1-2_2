@@ -3,10 +3,10 @@ import csv
 arr={}
 temp_name='Россия'
 temp_max=0
-r=0
+str=0
 i=1
 
-with open('opendata.csv', encoding='cp1251') as csvfile:
+with open('opendata.csv') as csvfile:
     credit_reader=csv.reader(csvfile, delimiter=',')
     for row in credit_reader:
         if row[0]=='Количество заявок на потребительские кредиты':
@@ -23,7 +23,7 @@ with open('opendata.csv', encoding='cp1251') as csvfile:
 for word, count in sorted(arr.items(), key=lambda item: item[1], reverse=True):
     print(f"{i} {word} -> {count}")
     i+=1
-    r+=1
-    if r==100: # кол-во строк на вывод
+    str+=1
+    if str==10:
         break
-print('Регионом с максимальным количеством заявок на потребительские кредиты в 2017 г. является:', max(arr, key=arr.get))
+print('Регионом с максимальным количеством заявок на потребительские кредиты в 2017 году является:', max(arr, key=arr.get))
