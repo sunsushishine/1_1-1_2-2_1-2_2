@@ -1,7 +1,11 @@
 import csv
+
 arr = {}
 temp_name = 'Россия'
 temp_max = 0
+r=0
+i=1
+
 with open('opendata.csv', encoding='cp1251') as csvfile:
     credit_reader = csv.reader(csvfile, delimiter=',')
     for row in credit_reader:
@@ -15,8 +19,7 @@ with open('opendata.csv', encoding='cp1251') as csvfile:
                     temp_max=0
                     temp_name = row[1]
                     temp_max += int(row[3])
-r=0
-i=1                
+              
 for word, count in sorted(arr.items(), key=lambda item: item[1], reverse=True):
     print(f"{i} {word} -> {count}")
     i+=1
