@@ -10,9 +10,9 @@ class Cat:
     def meow(self):
         print(self.name, "Говорит мяу")
     def print(self):
-        print("Кошку(Кота) зовут {0}".format(self.name))
-        print("Цвет кошки(кота) {0}".format(self.color))
-        print("Вес кошки(кота) {0} кг.".format(self.weight))
+        print("Кота зовут {0}".format(self.name))
+        print("Цвет кота {0}".format(self.color))
+        print("Вес кошки кота {0} кг.".format(self.weight))
 
 myCat = Cat("Барсик","Черный",3)
 myCat.meow()
