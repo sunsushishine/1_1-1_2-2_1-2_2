@@ -9,4 +9,3 @@ for i in range(100):
                 break
         else:
             print('Ошибка преобразования типов')
-    
