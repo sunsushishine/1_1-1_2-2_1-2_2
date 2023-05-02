@@ -63,21 +63,22 @@ def print_result(previous_nodes, shortest_path, start_node, target_node):
     print("Найден следующий лучший маршрут с ценностью {}.".format(shortest_path[target_node]))
     print(" -> ".join(reversed(path)))
 
-nodes = ["Мытищи", "Москва", "Долгопрудный", "Зеленоград", "Софрино", "Морозки", "Яхрома", "Дмитров", "Сергиев Посад", "Клин"]
- 
+# nodes = ["Мытищи", "Москва", "Долгопрудный", "Зеленоград", "Софрино", "Морозки", "Яхрома", "Дмитров", "Сергиев Посад", "Клин"]
+nodes = ["Клин", "Дмитров", "Сергиев Посад", "Яхрома", "Зеленоград", "Морозки", "Софрино", "Долгопрудный", "Мытищи", "Москва"]
+
 init_graph = {}
 for node in nodes:
     init_graph[node] = {}
-    
-init_graph["Мытищи"]["Москва"] = 26
-init_graph["Мытищи"]["Долгопрудный"] = 22
-init_graph["Мытищи"]["Софрино"] = 41
+
+init_graph["Москва"]["Мытищи"] = 26
 init_graph["Москва"]["Долгопрудный"] = 28
 init_graph["Москва"]["Зеленоград"] = 46
-init_graph["Долгопрудный"]["Морозки"] = 34
-init_graph["Долгопрудный"]["Зеленоград"] = 30
+init_graph["Зеленоград"]["Москва"] = 46
+init_graph["Зеленоград"]["Долгопрудный"] = 30
 init_graph["Зеленоград"]["Клин"] = 51
 init_graph["Зеленоград"]["Морозки"] = 46
+
+
 
 graph = Graph(nodes, init_graph)
 previous_nodes, shortest_path = dijkstra_algorithm(graph=graph, start_node="Москва")
