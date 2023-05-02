@@ -1,30 +1,50 @@
-import numpy as np
+import copy
 
-A1 = np.array([[1, -1, 1], [2, 1, 1], [1, 1, 1]])
-A2 = np.array([[1, 2, -1], [2, -3, 1], [4, 1, -1]])
-B1 = np.array([3, 11, 8])
-B2 = np.array([7, 3, 16])
+def kramer_method(matrix, free_terms):
+    n = len(matrix)
+    determinant = det(matrix)
+    solution = []
 
-print("Матрица A:")
-print(A1,"\n")
-print("Матрица B:")
-print(B1,"\n")
+    try:
+        for i in range(n):
+            matrix_copy = copy.deepcopy(matrix)
+            for j in range(n):
+                matrix_copy[j][i] = free_terms[j]
+            determinant_i = det(matrix_copy)
+            solution_i = determinant_i / determinant
+            solution.append(solution_i)
+        print(solution)
+    except:
+        print("Решения нет")
+    return solution
 
-try:
-    X1 = np.linalg.solve(A1, B1)
-    print("Решение системы линейных уравнений 1:")
-    print(X1, "\n")
-except:
-    print("Нет решения", "\n")
+def det(matrix):
+    n = len(matrix)
+    if n == 1:
+        return matrix[0][0]
+    
+    if n == 2:
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
 
-print("Матрица A:")
-print(A2,"\n")
-print("Матрица B:")
-print(B2,"\n")
+    determinant = 0
+    sign = 1
 
-try:
-    X2 = np.linalg.solve(A2, B2)
-    print("Решение системы линейных уравнений 2:")
-    print(X2, "\n")
-except:
-    print("Нет решения", "\n")
+    for i in range(n):
+        matrix_copy = copy.deepcopy(matrix)
+        matrix_copy.pop(0)
+        for j in range(n - 1):
+            matrix_copy[j].pop(i)
+        determinant += sign * matrix[0][i] * det(matrix_copy)
+        sign = -sign
+
+    return determinant
+
+matrix = [[1, -1, 1], [2, 1, 1], [1, 1, 2]]
+free_terms = [3, 11, 8]
+print("Решение 1:", matrix, "\n")
+kramer_method(matrix, free_terms)
+
+matrix = [[1, 2, -1], [2, -3, 1], [4, 1, -1]]
+free_terms = [7, 3, 16]
+print("Решение 2:", matrix, "\n")ф
+kramer_method(matrix, free_terms)
